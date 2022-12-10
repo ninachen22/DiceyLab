@@ -21,4 +21,7 @@ public class Bins {
         return binsResultsTracker.get(specificBin);
     }
 
+    public float percentOfEachResult(int resultNum) {
+        return binsResultsTracker.get(resultNum) / (float) totalRolls;
+    }
 }

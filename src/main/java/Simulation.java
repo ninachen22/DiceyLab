@@ -1,5 +1,3 @@
-import java.util.TreeMap;
-
 public class Simulation {
     private final int numOfRolls;
     private final int numOfDicePerRoll;
@@ -20,10 +18,18 @@ public class Simulation {
     private void printResults() {
         System.out.println("");
         for (int i = numOfDicePerRoll; i <= maxSum; i++) {
-            System.out.printf("%2s | %10s | %n", i, bins.getSpecificBinCount(i).toString());
-//            System.out.printf("%2s | %10s | %.2f | %2s %n", i,
-//                    bins.getSpecificBinCount(i).toString(), bins.rollPercPerBin(i), displayStars(i));
+//            System.out.printf("%2s | %10s | %n", i, bins.getSpecificBinCount(i).toString());
+            System.out.printf("%2s | %10s | %.2f | %2s %n", i,
+                    bins.getSpecificBinCount(i).toString(), bins.percentOfEachResult(i), displayStars(i));
         }
+    }
+
+    public String displayStars(int resultSum) {
+        String stars = "";
+        for (int i = 0; i < Math.round(bins.percentOfEachResult(resultSum) * 100); i++) {
+            stars += "*";
+        }
+        return stars;
     }
 
     public Simulation(int numOfRolls, int numOfDicePerRoll) {
